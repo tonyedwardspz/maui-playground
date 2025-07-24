@@ -24,29 +24,12 @@ namespace SyncFusion_Bottom_Sheet
         bool firstLoad = true;
         private void BottomSheet_StateChanged(object? sender, StateChangedEventArgs e)
         {
-            try
+            // This works to only allow two states
+            // Setting the same value in XAMl causes the layout issue
+            if (firstLoad)
             {
-                var last = e.OldState;
-                var newish = e.NewState;
-
-                if (firstLoad)
-                {
-                    bottomSheet.AllowedState = BottomSheetAllowedState.FullExpanded;
-                    firstLoad = false;
-                }
-
-                if (bottomSheet.State != BottomSheetState.Collapsed)
-                {
-                    bottomSheet.State = BottomSheetState.FullExpanded;
-                }
-                else
-                {
-                    bottomSheet.State = BottomSheetState.Collapsed;
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Error", ex.Message, "OK");
+                bottomSheet.AllowedState = BottomSheetAllowedState.FullExpanded;
+                firstLoad = false;
             }
         }
 
