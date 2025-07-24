@@ -1,4 +1,5 @@
 ﻿using Syncfusion.Maui.Toolkit.BottomSheet;
+using System.Diagnostics;
 
 namespace SyncFusion_Bottom_Sheet
 {
@@ -20,18 +21,32 @@ namespace SyncFusion_Bottom_Sheet
             bottomSheet.State = BottomSheetState.Collapsed;
         }
 
+        bool firstLoad = true;
         private void BottomSheet_StateChanged(object? sender, StateChangedEventArgs e)
         {
-            var last = e.OldState;
-            var newish = e.NewState;
+            try
+            {
+                var last = e.OldState;
+                var newish = e.NewState;
 
-            if (bottomSheet.State != BottomSheetState.Collapsed)
-            {
-                bottomSheet.State = BottomSheetState.FullExpanded;
+                if (firstLoad)
+                {
+                    bottomSheet.AllowedState = BottomSheetAllowedState.FullExpanded;
+                    firstLoad = false;
+                }
+
+                if (bottomSheet.State != BottomSheetState.Collapsed)
+                {
+                    bottomSheet.State = BottomSheetState.FullExpanded;
+                }
+                else
+                {
+                    bottomSheet.State = BottomSheetState.Collapsed;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                bottomSheet.State = BottomSheetState.Collapsed;
+                Debug.WriteLine("Error", ex.Message, "OK");
             }
         }
 
@@ -49,16 +64,21 @@ namespace SyncFusion_Bottom_Sheet
 
         private void Clicked_OpenBottomSheet(object sender, EventArgs e)
         {
-            if (bottomSheet.State == BottomSheetState.Collapsed)
+            try
             {
-                bottomSheet.State = BottomSheetState.FullExpanded;
+                if (bottomSheet.State == BottomSheetState.Collapsed)
+                {
+                    bottomSheet.State = BottomSheetState.FullExpanded;
+                }
+                else
+                {
+                    bottomSheet.State = BottomSheetState.Collapsed;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                bottomSheet.State = BottomSheetState.Collapsed;
+                Debug.WriteLine("Error", ex.Message, "OK");
             }
-            
         }
-
     }
 }

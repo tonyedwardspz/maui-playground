@@ -6,19 +6,23 @@
 
 
     <Grid BackgroundColor="White">
-        
+
 
         <BottomSheet:SfBottomSheet x:Name="bottomSheet" 
                                    HalfExpandedRatio="{OnPlatform Android=0.5, iOS=0.6}" 
                                    FullExpandedRatio="0.9" 
                                    CollapsedHeight="80"
-                                   State="Collapsed" 
-                                   GrabberAreaHeight="0"  
-                                   BackgroundColor="Blue" IsOpen="True"
+                                   State="Collapsed"  
+                                   BackgroundColor="Blue" 
+                                   IsOpen="True"
+                                   ShowGrabber="False"
                                    ContentPadding="0"
-                                   AllowedState="FullExpanded"
-                                   
+                                   CollapseOnOverlayTap="True"
                                    >
+
+
+
+
 
             <BottomSheet:SfBottomSheet.Content>
 
