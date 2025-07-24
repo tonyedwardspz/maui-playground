@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:BottomSheet="clr-namespace:Syncfusion.Maui.Toolkit.BottomSheet;assembly=Syncfusion.Maui.Toolkit"
+             x:Class="SyncFusion_Bottom_Sheet.MainPage">
+
+
+    <Grid BackgroundColor="White">
+        
+
+        <BottomSheet:SfBottomSheet x:Name="bottomSheet" 
+                                   HalfExpandedRatio="{OnPlatform Android=0.5, iOS=0.6}" 
+                                   FullExpandedRatio="0.9" 
+                                   CollapsedHeight="80"
+                                   State="Collapsed" 
+                                   GrabberAreaHeight="0"  
+                                   BackgroundColor="Blue" IsOpen="True"
+                                   ContentPadding="0"
+                                   AllowedState="FullExpanded"
+                                   
+                                   >
+
+            <BottomSheet:SfBottomSheet.Content>
+
+                <VerticalStackLayout BackgroundColor="White" Padding="10">
+                    
+                    <Image
+                        Source="dotnet_bot.png"
+                        HeightRequest="400"
+                        Aspect="AspectFit"
+                        SemanticProperties.Description="dot net bot in a hovercraft number nine" 
+                        />
+
+                    <Label
+                        Text="Hello, World!"
+                        Style="{StaticResource Headline}"
+                        SemanticProperties.HeadingLevel="Level1" 
+                        />
+
+                    <Label
+                        Text="Welcome to &#10;.NET Multi-platform App UI"
+                        Style="{StaticResource SubHeadline}"
+                        SemanticProperties.HeadingLevel="Level2"
+                        SemanticProperties.Description="Welcome to dot net Multi platform App UI"
+                        />
+
+                    <Button
+                        x:Name="CounterBtn"
+                        Text="Click me" 
+                        SemanticProperties.Hint="Counts the number of times you click"
+                        Clicked="OnCounterClicked" 
+                        />
+
+                </VerticalStackLayout>
+
+            </BottomSheet:SfBottomSheet.Content>
+
+            <BottomSheet:SfBottomSheet.BottomSheetContent>
+
+                <Grid RowDefinitions="100, *, 80">
+
+                    <Grid Grid.Row="0">
+                        <Label Text="Bottom Sheet Title" />
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Label Text="The Main Bottom sheet content" />
+                    </Grid>
+
+                    <Grid Background="Chartreuse" Grid.Row="2" ColumnDefinitions="*,Auto" RowDefinitions="40,40" Margin="0" Padding="5" >
+                        <Label Text="BottomSheet Content" Grid.Row="0" HeightRequest="20" VerticalOptions="End"/>
+                        <Label Text="BottomSheet 2nd Content" Grid.Row="1" HeightRequest="20" VerticalOptions="Start"/>
+
+                        <Button Text="Open Sheet" Grid.Column="1" Grid.RowSpan="2" VerticalOptions="Center" Clicked="Clicked_OpenBottomSheet" />
+                    </Grid>
+
+                </Grid>
+
+            </BottomSheet:SfBottomSheet.BottomSheetContent>
+        </BottomSheet:SfBottomSheet>
+            
+    </Grid>
+
+
+</ContentPage>
