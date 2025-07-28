@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Syncfusion_Shimmer_View.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Shimmer="clr-namespace:Syncfusion.Maui.Toolkit.Shimmer;assembly=Syncfusion.Maui.Toolkit">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,0" Spacing="25">
+
+            <Button
+                x:Name="CounterBtn"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Fill"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Text="Click me" />
+
+            <Shimmer:SfShimmer x:Name="Shimmer">
+                <Shimmer:SfShimmer.CustomView>
+
+                    <VerticalStackLayout x:Name="ShimmerGrid" />
+
+                </Shimmer:SfShimmer.CustomView>
+
+                <Shimmer:SfShimmer.Content>
+
+                    <CollectionView BackgroundColor="Transparent" ItemsSource="{Binding Cottages}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid
+                                    Padding="0,10"
+                                    ColumnDefinitions="100,*"
+                                    RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+
+                                    <!--  Cottage Image  -->
+                                    <Image
+                                        Grid.Row="0"
+                                        Grid.RowSpan="3"
+                                        Grid.Column="0"
+                                        Aspect="AspectFill"
+                                        HeightRequest="80"
+                                        Source="{Binding ImageUrl}"
+                                        VerticalOptions="Start"
+                                        WidthRequest="80" />
+
+                                    <!--  Cottage Name  -->
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Margin="10,0,0,5"
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        HeightRequest="20"
+                                        Text="{Binding Name}"
+                                        TextColor="Black" />
+
+                                    <!--  Location  -->
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Margin="10,0,0,5"
+                                        FontSize="14"
+                                        HeightRequest="20"
+                                        Text="{Binding Location}"
+                                        TextColor="Gray" />
+
+                                    <!--  Description  -->
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        Margin="10,0,0,5"
+                                        FontSize="12"
+                                        HeightRequest="30"
+                                        LineBreakMode="TailTruncation"
+                                        MaxLines="2"
+                                        Text="{Binding Description}"
+                                        TextColor="DarkGray" />
+
+                                    <!--  Price and Rating  -->
+                                    <StackLayout
+                                        Grid.Row="3"
+                                        Grid.Column="1"
+                                        Margin="10,5,0,0"
+                                        HeightRequest="20"
+                                        Orientation="Horizontal">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="16"
+                                            Text="{Binding Price, StringFormat='${0:F2}'}"
+                                            TextColor="Green" />
+                                        <Label
+                                            Margin="10,0"
+                                            Text="•"
+                                            TextColor="Gray" />
+                                        <Label
+                                            FontSize="14"
+                                            Text="{Binding Rating, StringFormat='⭐ {0:F1}'}"
+                                            TextColor="Orange" />
+                                    </StackLayout>
+
+                                    <!--  Separator Line  -->
+                                    <BoxView
+                                        Grid.Row="4"
+                                        Grid.ColumnSpan="2"
+                                        Margin="0,10,0,0"
+                                        BackgroundColor="LightGray"
+                                        HeightRequest="1" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </Shimmer:SfShimmer.Content>
+
+
+            </Shimmer:SfShimmer>
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
